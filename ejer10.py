@@ -1,16 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+#Introducir un directorio y una letra , enumerar archivos con dicha letras.
 
-#Pedir el nombre y apellido y poner las iniciales separada de punto.
-import sys
+directorio=raw_input('Introduce el directorio a analizar:')
 
-print sys.argv[1]
-print sys.argv[2]
-print sys.argv[3]
-
-if len(sys.argv) !=4:
-	print"Los argumentos son Nombre y apellidos"
+if not os.access(directorio,0):
+	print "EL directorio no existe"
 	exit()
 
-iniciales= sys.argv[1][0]+ '.'+ sys.argv[2][0]+ '.' + sys.argv[3][0] 
-print "Tus iniciales son" +iniciales.upper()
+letra=raw_input('Introduce la letra:')
+
+ficheros=os.listdir(directorio)
+
+for fichero in ficheros:
+	if fichero.count(letra)>0:
+		print fichero
+
